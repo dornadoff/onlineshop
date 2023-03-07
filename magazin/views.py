@@ -16,3 +16,28 @@ class HomeView(View):
             }
             return render(request, "page-index.html", data)
         return redirect("/")
+
+class BolimlarView(View):
+    def get(self, request):
+
+        data = {
+            "bolim":Bolim.objects.all(),
+            "mahsulot":Mahsulot.objects.all()
+        }
+        return render(request, "page-category.html", data)
+
+class BittaBolimView(View):
+    def get(self, request, pk):
+        data = {
+            "mahsulot":Mahsulot.objects.filter(bolim__id=pk)
+        }
+        return render(request, "page-listing-grid.html", data)
+
+class BittaMahsulotView(View):
+    def get(self, request, pk):
+        mahsulot = Mahsulot.objects.get(id=pk)
+        data = {
+            "mahsulot":mahsulot,
+            "medialar":Media.objects.filter(mahsulot__id=pk)
+        }
+        return render(request, "page-detail-product.html", data)
