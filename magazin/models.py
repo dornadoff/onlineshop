@@ -1,4 +1,5 @@
 from django.db import models
+from userapp.models import Profil
 
 class Bolim(models.Model):
     nom = models.CharField(max_length=100)
@@ -24,6 +25,12 @@ class Mahsulot(models.Model):
 class Media(models.Model):
     rasm = models.FileField(upload_to="mahsulotlar")
     mahsulot = models.ForeignKey(Mahsulot, on_delete=models.CASCADE)
+
+class Izoh(models.Model):
+    baho = models.FloatField()
+    matn = models.CharField(max_length=500)
+    sana = models.DateField()
+    profil = models.ForeignKey(Profil, on_delete=models.CASCADE)
 
 
 
