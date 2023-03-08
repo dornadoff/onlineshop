@@ -27,10 +27,11 @@ class Media(models.Model):
     mahsulot = models.ForeignKey(Mahsulot, on_delete=models.CASCADE)
 
 class Izoh(models.Model):
-    baho = models.FloatField()
-    matn = models.CharField(max_length=500)
+    baho = models.FloatField(max_length=5)
+    matn = models.CharField(max_length=1000)
     sana = models.DateField()
     profil = models.ForeignKey(Profil, on_delete=models.CASCADE)
+    mahsulot = models.ForeignKey(Mahsulot, on_delete=models.CASCADE, null=True)
 
 
 

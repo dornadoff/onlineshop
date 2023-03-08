@@ -26,8 +26,7 @@ class RegisterView(View):
         if request.POST.get("password") == request.POST.get("password_2"):
             a = User.objects.create_user(
                 username=request.POST.get("username"),
-                password=request.POST.get("password"),
-                email=request.POST.get("email")
+                password=request.POST.get("password")
             )
             Profil.objects.create(
                 ism=request.POST.get("ism"),
