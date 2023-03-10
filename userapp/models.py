@@ -1,5 +1,6 @@
 from django.db import models
 from django.contrib.auth.models import User
+
 class Profil(models.Model):
     ism = models.CharField(max_length=100)
     jins = models.CharField(max_length=10)

@@ -1,3 +1,15 @@
 from django.db import models
+from magazin.models import *
+from django.contrib.auth.models import User
+from userapp.models import *
+class Tanlangan(models.Model):
+    user = models.ForeignKey(User, on_delete=models.SET_NULL, null=True)
+    mahsulot = models.ForeignKey(Mahsulot, on_delete=models.CASCADE)
 
-# Create your models here.
+class Buyurtma(models.Model):
+    user = models.ForeignKey(User, on_delete=models.SET_NULL, null=True)
+    mahsulot = models.ForeignKey(Mahsulot, on_delete=models.CASCADE, null=True)
+    sana = models.DateField(auto_now=True)
+
+
+
