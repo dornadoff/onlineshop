@@ -35,18 +35,18 @@
 	<td> 
 		<div class="input-group mb-3 input-spinner">
         <div class="input-group-prepend">
-			<a href="/savat_q/{{savat.id}}/"><button class="btn btn-light" type="button" id="button-plus"> + </button></a>
+			<a href="/buyurtma/savat_q/{{i.id}}/"><button class="btn btn-light" type="button" id="button-plus"> + </button></a>
         </div>
-        <input type="text" class="form-control" value="{{0}}">
+        <input type="text" class="form-control" value="{{i.miqdor}}">
         <div class="input-group-append">
-			<a href="/savat_k/{{savat.id}}/"><button class="btn btn-light" type="button" id="button-minus"> &minus; </button></a>
+			<a href="/buyurtma/savat_k/{{i.id}}/"><button class="btn btn-light" type="button" id="button-minus"> &minus; </button></a>
         </div>
         </div>
 	</td>
 	<td> 
 		<div class="price-wrap"> 
-			<var class="price">${{i.mahsulot.narx}}</var>
-			<small  class="text-muted"> $23 each </small>
+			<var class="price">${{i.umumiy}}</var>
+			<small  class="text-muted"> ${{i.miqdor}} each </small>
 		</div> <!-- price-wrap .// -->
 	</td>
 	<td class="text-right"> 
@@ -61,7 +61,7 @@
 
 <div class="card-body border-top">
 	<a href="/buyurtma_qosh/" class="btn btn-primary float-md-right"> Make Purchase <i class="fa fa-chevron-right"></i> </a>
-	<a href="#" class="btn btn-light"> <i class="fa fa-chevron-left"></i> Continue shopping </a>
+	<a href="/magazin/home/" class="btn btn-light"> <i class="fa fa-chevron-left"></i> Continue shopping </a>
 </div>	
 </div> <!-- card.// -->
 
@@ -96,7 +96,7 @@
 					</dl>
 					<dl class="dlist-align">
 					  <dt>Discount:</dt>
-					  <dd class="text-right">USD {{0}}</dd>
+					  <dd class="text-right">USD {{chg}}</dd>
 					</dl>
 					<dl class="dlist-align">
 					  <dt>Total:</dt>

@@ -39,3 +39,11 @@ class RegisterView(View):
             return redirect("/magazin/home/")
     def get(self, request):
         return render(request, "page-user-register.html")
+
+class ProfilView(View):
+    def get(self, request):
+        return render(request, "page-profile-main.html")
+
+class SellerView(View):
+    def get(self, request):
+        return render(request, "page-profile-seller.html")

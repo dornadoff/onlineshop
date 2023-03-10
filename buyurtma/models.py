@@ -15,6 +15,8 @@ class Buyurtma(models.Model):
 class Savat(models.Model):
     mahsulot = models.ForeignKey(Mahsulot, on_delete=models.CASCADE)
     profil = models.ForeignKey(Profil, on_delete=models.CASCADE)
+    umumiy = models.PositiveIntegerField(null=True)
+    miqdor = models.PositiveIntegerField(null=True, default=1)
 
 
 

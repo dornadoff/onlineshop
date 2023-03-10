@@ -1,19 +1,24 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from django.views import View
 from .models import *
 from userapp.models import *
-from django.db.models import *
+from django.db.models import Sum
 
 class SavatView(View):
     def get(self, request):
-        pr = Profil.objects.get(user=request.user)
-        savat = Savat.objects.filter(profil=pr)
+        profil1 = Profil.objects.get(user=request.user)
+        savatlar = Savat.objects.filter(profil=profil1)
+        summa = savatlar.aggregate(Sum('umumiy'))['umumiy__sum']
+        chegirmalar = 0
+        for savat in savatlar:
+            chegirmalar += savat.miqdor*(savat.mahsulot.chegirma*savat.mahsulot.narx)/100
         data = {
-            "savat":savat,
-            "sum": savat.aggregate(Sum("mahsulot__narx"))["mahsulot__narx__sum"]
+            'savat': savatlar,
+            'sum': summa,
+            'chg': round(chegirmalar, 2),
+            'yakuniy': summa - round(chegirmalar, 2)
         }
-        print(savat.aggregate(Sum("mahsulot__narx")))
-        return render(request, "page-shopping-cart.html", data)
+        return render(request, 'page-shopping-cart.html', data)
 
 class BuyurtmaView(View):
     def get(self, request):
@@ -34,3 +39,23 @@ class TanlanganView(View):
             "mahsulot":Tanlangan.objects.filter(user=request.user)
         }
         return render(request, "page-profile-wishlist.html", data)
+
+
+class MiqdorQoshView(View):
+    def get(self, request, pk):
+        savat = Savat.objects.get(id=pk)
+        if savat.profil.user == request.user:
+            savat.miqdor += 1
+            savat.umumiy = savat.miqdor * savat.mahsulot.narx
+            savat.save()
+        return redirect("/buyurtma/savat/")
+
+class MiqdorKamView(View):
+    def get(self, request, pk):
+        savat = Savat.objects.get(id=pk)
+        if savat.profil.user == request.user and savat.miqdor != 1:
+            savat.miqdor -= 1
+            savat.umumiy -= savat.mahsulot.narx
+            savat.save()
+        return redirect("/buyurtma/savat/")
+
