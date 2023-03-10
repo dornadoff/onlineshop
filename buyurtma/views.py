@@ -6,7 +6,14 @@ from django.db.models import *
 
 class SavatView(View):
     def get(self, request):
-        return render(request, "page-shopping-cart.html")
+        pr = Profil.objects.get(user=request.user)
+        savat = Savat.objects.filter(profil=pr)
+        data = {
+            "savat":savat,
+            "sum": savat.aggregate(Sum("mahsulot__narx"))["mahsulot__narx__sum"]
+        }
+        print(savat.aggregate(Sum("mahsulot__narx")))
+        return render(request, "page-shopping-cart.html", data)
 
 class BuyurtmaView(View):
     def get(self, request):

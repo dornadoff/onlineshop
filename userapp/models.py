@@ -7,3 +7,5 @@ class Profil(models.Model):
     shahar = models.CharField(max_length=100)
     davlat = models.CharField(max_length=100)
     user = models.OneToOneField(User, on_delete=models.SET_NULL, null=True)
+    def __str__(self):
+        return self.ism

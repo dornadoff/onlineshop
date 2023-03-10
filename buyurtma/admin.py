@@ -3,3 +3,4 @@ from .models import *
 
 admin.site.register(Tanlangan)
 admin.site.register(Buyurtma)
+admin.site.register(Savat)
