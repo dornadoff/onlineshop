@@ -59,3 +59,11 @@ class MiqdorKamView(View):
             savat.save()
         return redirect("/buyurtma/savat/")
 
+class TanlanganQoshishView(View):
+    def get(self, request, pk):
+        Tanlangan.objects.create(
+            user=request.user,
+            mahsulot=Mahsulot.objects.get(id=pk)
+        )
+        return redirect("/buyurtma/tanlangan/")
+
