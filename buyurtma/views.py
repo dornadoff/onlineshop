@@ -67,3 +67,8 @@ class TanlanganQoshishView(View):
         )
         return redirect("/buyurtma/tanlangan/")
 
+class TanlanganOchirishView(View):
+    def get(self, request, pk):
+        Tanlangan.objects.get(id=pk).delete()
+        return redirect("/buyurtma/tanlangan/")
+
