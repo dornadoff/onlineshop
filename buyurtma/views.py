@@ -72,3 +72,41 @@ class TanlanganOchirishView(View):
         Tanlangan.objects.get(id=pk).delete()
         return redirect("/buyurtma/tanlangan/")
 
+class SavatQoshishView(View):
+    def get(self, request, pk):
+        mahsulot1 = Mahsulot.objects.get(id=pk)
+        savat = Savat.objects.get(mahsulot=mahsulot1)
+        if savat is None:
+            Savat.objects.create(
+                profil=Profil.objects.filter(user=request.user),
+                mahsulot=mahsulot1,
+                miqdor=mahsulot1.miqdor,
+                umumiy=mahsulot1.narx * mahsulot1.miqdor
+            )
+        else:
+            savat.miqdor += mahsulot1.miqdor
+            savat.umumiy += mahsulot1.narx * mahsulot1.miqdor
+            savat.save()
+        print(mahsulot1.miqdor)
+        return redirect("/buyurtma/savat/")
+
+class MahsulotMiqdorQoshish(View):
+    def get(self, request, pk):
+        mahsulot1 = Mahsulot.objects.get(id=pk)
+        mahsulot1.miqdor = mahsulot1.miqdor+1
+        mahsulot1.save()
+        return redirect(f"/magazin/bolim/mahsulot/{pk}/")
+
+class MahsulotMiqdorAyrish(View):
+    def get(self, request, pk):
+        mahsulot1 = Mahsulot.objects.get(id=pk)
+        mahsulot1.miqdor -= 1
+        mahsulot1.save()
+        return redirect(f"/magazin/bolim/mahsulot/{pk}/")
+
+class SavatOchirishView(View):
+    def get(self, request, pk):
+        Savat.objects.get(id=pk).delete()
+        return redirect("/buyurtma/savat/")
+
+

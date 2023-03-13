@@ -27,7 +27,7 @@
 		<figure class="itemside">
 			<div class="aside"><img src="{{i.mahsulot.media_set.first.rasm.url}}" class="img-sm"></div>
 			<figcaption class="info">
-				<a href="#" class="title text-dark">{{i.mahsulot.nom}}</a>
+				<a href="/magazin/bolim/mahsulot/{{i.mahsulot.id}}/" class="title text-dark">{{i.mahsulot.nom}}</a>
 				<p class="text-muted small">Size: XL, Color: blue, <br> Brand: {{i.mahsulot.brend}}</p>
 			</figcaption>
 		</figure>
@@ -46,12 +46,12 @@
 	<td> 
 		<div class="price-wrap"> 
 			<var class="price">${{i.umumiy}}</var>
-			<small  class="text-muted"> ${{i.miqdor}} each </small>
+			<small  class="text-muted"> ${{i.mahsulot.narx}} each </small>
 		</div> <!-- price-wrap .// -->
 	</td>
 	<td class="text-right"> 
 	<a data-original-title="Save to Wishlist" title="" href="/buyurtma/tanlangan_qosh/{{i.mahsulot.id}}/" class="btn btn-light" data-toggle="tooltip"> <i class="fa fa-heart"></i></a>
-	<a href="/ochirish/{{savat.id}}/" class="btn btn-light btn-round"> Remove</a>
+	<a href="/buyurtma/savat/ochirish/{{i.id}}/" class="btn btn-light btn-round"> Remove</a>
 	</td>
 
 </tr>

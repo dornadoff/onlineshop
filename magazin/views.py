@@ -47,7 +47,8 @@ class BittaMahsulotView(View):
             "mahsulot":mahsulot1,
             "medialar":Media.objects.filter(mahsulot__id=pk),
             "izohlar":izoh,
-            "ortacha":ortachasi
+            "ortacha":ortachasi,
+            "bitta":mahsulot1.min_miqdor
         }
         return render(request, "page-detail-product.html", data)
 

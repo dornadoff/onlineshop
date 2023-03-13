@@ -88,16 +88,16 @@ consequat </p>
 		<div class="form-group col-md flex-grow-0">
 			<div class="input-group mb-3 input-spinner">
 			  <div class="input-group-prepend">
-			    <button class="btn btn-light" type="button" id="button-plus"> + </button>
+			    <a href="/buyurtma/mahsulot/qoshish/{{mahsulot.id}}/"><button class="btn btn-light" type="button" id="button-plus"> + </button></a>
 			  </div>
-			  <input type="text" class="form-control" value="1">
+			  <input type="text" class="form-control" value="{{mahsulot.miqdor}}">
 			  <div class="input-group-append">
-			    <button class="btn btn-light" type="button" id="button-minus"> &minus; </button>
+                  <a href="/buyurtma/mahsulot/ayrish/{{mahsulot.id}}/"> <button class="btn btn-light" type="button" id="button-minus"> &minus; </button> </a>
 			  </div>
 			</div>
 		</div> <!-- col.// -->
 		<div class="form-group col-md">
-			<a href="#"  class="btn  btn-primary"> 
+			<a href="/buyurtma/savat/qoshish/{{mahsulot.id}}"  class="btn  btn-primary">
 				<i class="fas fa-shopping-cart"></i> <span class="text">Add to cart</span> 
 			</a>
 			<a href="#" class="btn btn-light">

@@ -19,6 +19,7 @@ class Mahsulot(models.Model):
     yetkazish = models.CharField(max_length=15)
     mavjud = models.BooleanField(default=True)
     chegirma = models.PositiveIntegerField(default=0)
+    miqdor = models.PositiveIntegerField(default=1)
     def __str__(self):
         return f"{self.nom}, {self.brend}"
 
